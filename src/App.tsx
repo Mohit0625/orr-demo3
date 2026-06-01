@@ -25,7 +25,7 @@ function AnimatedRoutes() {
 }
 
 function AppContent() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
@@ -46,10 +46,14 @@ function AppContent() {
 
   // Initialize theme based on preference or default to dark
   useEffect(() => {
-    // Defaulting to light mode to ensure the requested toggle works as expected initially
+    const savedTheme = localStorage.getItem('theme');
     const root = document.documentElement;
-    if (root.classList.contains('dark')) {
+    if (savedTheme === 'light') {
+      setIsDark(false);
+      root.classList.remove('dark');
+    } else {
       setIsDark(true);
+      root.classList.add('dark');
     }
   }, []);
 
@@ -59,8 +63,10 @@ function AppContent() {
     const root = document.documentElement;
     if (nextIsDark) {
       root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   };
 
