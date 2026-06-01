@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+// @ts-expect-error image typing
 import logo from '../logo-wbg.png';
 
 export default function Footer() {

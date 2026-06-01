@@ -12,8 +12,53 @@ interface NavigationProps {
 
 export default function Navigation({ isDark, toggleTheme }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+
+  useEffect(() => {
+    if (!isHomePage) {
+      setActiveSection('');
+      return;
+    }
+
+    const sections = ['home', 'aboutus', 'services', 'process', 'portfolio', 'contact'];
+    
+    const handleScroll = () => {
+      let maxSection = 'home';
+      let maxPercent = 0;
+      const viewportHeight = window.innerHeight;
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const rect = el.getBoundingClientRect();
+        const top = Math.max(0, rect.top);
+        const bottom = Math.min(viewportHeight, rect.bottom);
+        const visibleHeight = Math.max(0, bottom - top);
+        const percent = visibleHeight / viewportHeight;
+
+        if (percent > maxPercent) {
+          maxPercent = percent;
+          maxSection = id;
+        }
+      });
+
+      if (maxPercent > 0.25) {
+        setActiveSection(maxSection);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isHomePage, location.pathname]);
 
   const getLinkHref = (item: string) => {
     if (item === 'Portfolio') return '/portfolio';
@@ -21,11 +66,16 @@ export default function Navigation({ isDark, toggleTheme }: NavigationProps) {
   };
 
   const getIsActive = (item: string) => {
-    if (item === 'Portfolio') return location.pathname === '/portfolio';
+    if (item === 'Portfolio') {
+      return location.pathname === '/portfolio' || (isHomePage && activeSection === 'portfolio');
+    }
+    if (isHomePage) {
+      return activeSection === item.toLowerCase();
+    }
     return false;
   };
 
-  const navItems = ['Home', 'Portfolio', 'Contact'];
+  const navItems = ['Home', 'AboutUs', 'Services', 'Process', 'Portfolio', 'Contact'];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 transition-colors duration-500">
