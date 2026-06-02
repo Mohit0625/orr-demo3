@@ -78,7 +78,7 @@ export default function Navigation({ isDark, toggleTheme }: NavigationProps) {
   const navItems = ['Home', 'AboutUs', 'Services', 'Process', 'Portfolio', 'Contact'];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 transition-colors duration-500">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/50 dark:bg-black/50 backdrop-blur-md border-b border-gray-200/20 dark:border-white/10 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link 
           to="/" 
