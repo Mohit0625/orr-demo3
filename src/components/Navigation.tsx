@@ -24,35 +24,43 @@ export default function Navigation({ isDark, toggleTheme }: NavigationProps) {
 
     const sections = ['home', 'aboutus', 'services', 'process', 'portfolio', 'contact'];
     
+    let ticking = false;
+    
     const handleScroll = () => {
-      let maxSection = 'home';
-      let maxPercent = 0;
-      const viewportHeight = window.innerHeight;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          let maxSection = 'home';
+          let maxPercent = 0;
+          const viewportHeight = window.innerHeight;
 
-      sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
+          sections.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
 
-        const rect = el.getBoundingClientRect();
-        const top = Math.max(0, rect.top);
-        const bottom = Math.min(viewportHeight, rect.bottom);
-        const visibleHeight = Math.max(0, bottom - top);
-        const percent = visibleHeight / viewportHeight;
+            const rect = el.getBoundingClientRect();
+            const top = Math.max(0, rect.top);
+            const bottom = Math.min(viewportHeight, rect.bottom);
+            const visibleHeight = Math.max(0, bottom - top);
+            const percent = visibleHeight / viewportHeight;
 
-        if (percent > maxPercent) {
-          maxPercent = percent;
-          maxSection = id;
-        }
-      });
+            if (percent > maxPercent) {
+              maxPercent = percent;
+              maxSection = id;
+            }
+          });
 
-      if (maxPercent > 0.25) {
-        setActiveSection(maxSection);
+          if (maxPercent > 0.25) {
+            setActiveSection(maxSection);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('resize', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);

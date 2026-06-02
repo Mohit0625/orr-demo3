@@ -24,7 +24,7 @@ export default function Footer() {
               <img src={logo} alt="ORRO DIGITAL" className="h-15 w-auto object-contain" />
             </div>
             <p className="text-gray-500 dark:text-gray-400 max-w-sm">
-              Building Websites That Drive Growth. A premium website development agency rooted in Delhi, pushing the boundaries of digital experiences.
+              Building Websites That Drive Growth. A premium global development agency partnering with forward-thinking businesses worldwide to push the boundaries of digital experiences.
             </p>
           </div>
           <div>

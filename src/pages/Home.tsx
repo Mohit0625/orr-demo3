@@ -15,7 +15,7 @@ function ParallaxSection({ children, id, className = '' }: { children: React.Rea
 
   return (
     <section id={id} ref={ref} className={`py-24 overflow-hidden ${className}`}>
-      <motion.div style={{ y }} className="max-w-7xl mx-auto px-6">
+      <motion.div style={{ y }} className="max-w-7xl mx-auto px-6 will-change-transform">
         {children}
       </motion.div>
     </section>
@@ -53,17 +53,17 @@ export default function Home() {
           <motion.div 
             animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }} 
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-brand-cyan/20 blur-[120px]" 
+            className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-brand-cyan/20 blur-[120px] will-change-transform" 
           />
           <motion.div 
             animate={{ x: [0, -40, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }} 
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[20%] -right-[10%] w-[40%] h-[60%] rounded-full bg-brand-pink/20 blur-[120px]" 
+            className="absolute top-[20%] -right-[10%] w-[40%] h-[60%] rounded-full bg-brand-pink/20 blur-[120px] will-change-transform" 
           />
           <motion.div 
             animate={{ x: [0, 30, 0], y: [0, -30, 0] }} 
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-[20%] left-[20%] w-[60%] h-[50%] rounded-full bg-brand-blue/20 blur-[100px]" 
+            className="absolute -bottom-[20%] left-[20%] w-[60%] h-[50%] rounded-full bg-brand-blue/20 blur-[100px] will-change-transform" 
           />
         </div>
 
@@ -74,7 +74,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-mint/10 text-brand-mint text-sm font-semibold mb-6 border border-brand-mint/20"
             >
               <div className="w-2 h-2 rounded-full bg-brand-mint animate-pulse" />
-              Delhi's Premium Development Agency
+              Global Premium Development Agency
             </motion.div>
             
             <motion.h1 
@@ -132,7 +132,7 @@ export default function Home() {
           <div>
             <h2 className="text-sm font-bold tracking-widest text-brand-pink uppercase mb-3">About Us</h2>
             <h3 className="font-display text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              A modern digital agency based in <span className="text-brand-orange">Delhi</span>.
+              A modern digital agency with a <span className="text-brand-orange">global reach</span>.
             </h3>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
               Since 2021, ORRO DIGITAL has partnered with over 20 clients across 15+ industries to establish powerful online presences. We don't just build websites; we build scalable digital growth engines designed for conversion, speed, and aesthetics.
@@ -141,7 +141,7 @@ export default function Home() {
               {[
                 'Custom-tailored business websites and landing pages',
                 'Client-centric approach with dedicated ongoing support',
-                'Focus on local brands, startups, and established SMEs'
+                'Focus on international brands, global startups, and fast-growing businesses'
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle2 className="w-6 h-6 text-brand-mint shrink-0" />
@@ -378,7 +378,7 @@ export default function Home() {
             
             <div className="relative z-10 flex-1 text-white">
               <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">Ready to accelerate your growth?</h2>
-              <p className="text-lg text-gray-400 mb-8 max-w-md">Contact our Delhi headquarters today. Let's discuss your project goals and discover how we can elevate your digital presence.</p>
+              <p className="text-lg text-gray-400 mb-8 max-w-md">Get in touch with us today. Let's discuss your project goals and discover how we can elevate your global digital presence.</p>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
@@ -386,7 +386,7 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="text-sm text-gray-400">Headquarters</div>
-                    <div className="font-medium">Delhi, India</div>
+                    <div className="font-medium">Delhi, India (Global Delivery)</div>
                   </div>
                 </div>
               </div>
