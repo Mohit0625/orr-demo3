@@ -291,23 +291,28 @@ export default function Home() {
 
         <div className="flex gap-8 px-6 overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar" style={{ scrollbarWidth: 'none' }}>
           {[
-            { client: 'Apex Healthcare Clinic', type: 'Healthcare Website', color: 'bg-brand-blue' },
-            { client: 'Summit Real Estate', type: 'Property Listings Portal', color: 'bg-brand-mint' },
-            { client: 'Urban Tattoo Studio', type: 'Booking & Portfolio', color: 'bg-brand-deep-blue' },
-            { client: 'Vertex Financial', type: 'Consultancy Platform', color: 'bg-brand-cyan' }
+            { client: 'AuraFlow Product', type: 'Product Landing Page', color: 'bg-brand-blue', url: 'https://auraflow-product.vercel.app/' },
+            { client: 'Lens Photo', type: 'Photography Portfolio', color: 'bg-brand-mint', url: 'https://lens-photo.vercel.app/' },
+            { client: 'Harborstone Real Estate', type: 'Real Estate Platform', color: 'bg-brand-deep-blue', url: 'https://harborstone-real-estate.vercel.app/' },
+            { client: 'Inkverse Tattoo', type: 'Tattoo Studio Portfolio', color: 'bg-brand-pink', url: 'https://inkverse-tattoo.vercel.app/' },
+            { client: 'Artic Flow HVAC', type: 'HVAC Services', color: 'bg-brand-cyan', url: 'https://artic-flow-hvac.vercel.app/' },
+            { client: 'Doctor Demo', type: 'Medical & Healthcare', color: 'bg-brand-orange', url: 'https://doctor-demo-sigma.vercel.app/' }
           ].map((project, i) => (
-            <div key={i} className="min-w-[85vw] md:min-w-[60vw] lg:min-w-[40vw] snap-center group cursor-pointer">
+            <a key={i} href={project.url} target="_blank" rel="noopener noreferrer" className="min-w-[85vw] md:min-w-[60vw] lg:min-w-[40vw] snap-center group cursor-pointer block">
               <div className={`aspect-[4/3] rounded-3xl ${project.color} bg-opacity-10 dark:bg-opacity-20 mb-6 relative overflow-hidden flex items-center justify-center border border-gray-200 dark:border-white/5`}>
-                 {/* Abstract representation of a graphic since we have no real images */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/0 to-black/20 dark:from-white/0 dark:to-white/5 mix-blend-overlay"></div>
-                <div className="w-1/2 h-1/2 rounded-full bg-white/20 dark:bg-white/10 blur-3xl transform group-hover:scale-110 transition-transform duration-700"></div>
-                <Layout className="w-16 h-16 text-gray-900/20 dark:text-white/20 relative z-10" />
+                <img 
+                  src={`https://image.thum.io/get/width/1200/crop/900/${project.url}`} 
+                  alt={project.client} 
+                  className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" 
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <div>
                 <div className="text-sm font-medium text-gray-500 mb-2">{project.type}</div>
                 <h4 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-brand-blue transition-colors">{project.client}</h4>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>

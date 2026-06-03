@@ -9,12 +9,12 @@ export default function Portfolio() {
   }, []);
 
   const projects = [
-    { client: 'Apex Healthcare Clinic', type: 'Healthcare Website', color: 'bg-brand-blue', desc: 'A complete digital transformation for a leading healthcare provider, featuring patient portals and secure appointment booking.' },
-    { client: 'Summit Real Estate', type: 'Property Listings Portal', color: 'bg-brand-mint', desc: 'Custom property management portal with advanced search filters, map integration, and an intuitive agent dashboard.' },
-    { client: 'Urban Tattoo Studio', type: 'Booking & Portfolio', color: 'bg-brand-deep-blue', desc: 'A visually striking portfolio site for a boutique tattoo studio, integrated with an online consultation scheduling system.' },
-    { client: 'Vertex Financial', type: 'Consultancy Platform', color: 'bg-brand-cyan', desc: 'Corporate presence for a financial advisory firm, focused on trust-building, client testimonials, and lead generation.' },
-    { client: 'Nova Tech Solutions', type: 'SaaS Landing Page', color: 'bg-brand-orange', desc: 'High-converting landing page for a B2B SaaS product, highlighting product features through interactive animations.' },
-    { client: 'EcoLife Goods', type: 'E-Commerce Store', color: 'bg-brand-pink', desc: 'A sustainable products e-commerce store with Shopify integration, custom cart experience, and responsive design.' }
+    { client: 'AuraFlow Product', type: 'Product Landing Page', color: 'bg-brand-blue', desc: 'A modern, high-converting product landing page designed to showcase features and drive conversions with a premium aesthetic.', url: 'https://auraflow-product.vercel.app/' },
+    { client: 'Lens Photo', type: 'Photography Portfolio', color: 'bg-brand-mint', desc: 'A visually striking photography portfolio designed to highlight high-quality imagery with seamless galleries and elegant typography.', url: 'https://lens-photo.vercel.app/' },
+    { client: 'Harborstone Real Estate', type: 'Real Estate Platform', color: 'bg-brand-deep-blue', desc: 'Custom property listing platform featuring advanced search, high-quality media galleries, and an intuitive user experience.', url: 'https://harborstone-real-estate.vercel.app/' },
+    { client: 'Inkverse Tattoo', type: 'Tattoo Studio Portfolio', color: 'bg-brand-pink', desc: 'A bold, character-driven portfolio site for a custom tattoo studio, integrating artist showcases and booking inquiries.', url: 'https://inkverse-tattoo.vercel.app/' },
+    { client: 'Artic Flow HVAC', type: 'HVAC Services', color: 'bg-brand-cyan', desc: 'A professional and trustworthy service corporate website for an HVAC company with lead-generation tools and service descriptions.', url: 'https://artic-flow-hvac.vercel.app/' },
+    { client: 'Doctor Demo', type: 'Medical & Healthcare', color: 'bg-brand-orange', desc: 'A patient-first healthcare website design focused on accessibility, clear service offerings, and trust-building.', url: 'https://doctor-demo-sigma.vercel.app/' }
   ];
 
   return (
@@ -45,19 +45,25 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12">
           {projects.map((project, i) => (
-            <motion.div 
+            <motion.a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               key={i} 
-              className="group cursor-pointer"
+              className="group cursor-pointer block"
             >
               <div className={`aspect-[4/3] rounded-3xl ${project.color} bg-opacity-10 dark:bg-opacity-20 mb-6 relative overflow-hidden flex items-center justify-center border border-gray-200 dark:border-white/5`}>
-                 {/* Abstract representation of a graphic since we have no real images */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/0 to-black/20 dark:from-white/0 dark:to-white/5 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-80"></div>
-                <div className="w-1/2 h-1/2 rounded-full bg-white/20 dark:bg-white/10 blur-3xl transform group-hover:scale-125 transition-transform duration-700 ease-out"></div>
-                <Layout className="w-20 h-20 text-gray-900/20 dark:text-white/20 relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
+                <img 
+                  src={`https://image.thum.io/get/width/1200/crop/900/${project.url}`} 
+                  alt={project.client} 
+                  className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <div>
                 <div className="flex justify-between items-start mb-2">
@@ -73,7 +79,7 @@ export default function Portfolio() {
                   View Case Study <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
